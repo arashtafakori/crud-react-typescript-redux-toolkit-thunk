@@ -22,11 +22,19 @@ export const getTask = createAsyncThunk(
 );
 
 export const createNewTask = createAsyncThunk(
-  "tasks/createNew",
-  async(newBooklet: any) => {
-    let response = await api.post(
-      `/tasks`, newBooklet);
-    return response.data;
+  "tasks/createNewt",
+  async (newTask: any, thunkAPI) => {
+    try {
+      const response = await api.post(
+        `/tasks`, newTask);
+      return response.data;
+    } catch (error: any) {
+      if (error.response) {
+        return thunkAPI.rejectWithValue(error.response.data);
+      } else {
+        return thunkAPI.rejectWithValue({ error: 'Network error' });
+      }
+    }
   }
 );
 

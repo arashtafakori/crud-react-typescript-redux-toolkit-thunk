@@ -4,8 +4,7 @@ import {httpRequestStatus} from '../../../utils/httpRequest';
 export interface Task {
   id: string;
   title: string;
-  isArchived: boolean;
-  modifiedDate: string;
+  description: string;
 }
 
 export const initialTask = {
